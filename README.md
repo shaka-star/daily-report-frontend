@@ -1,16 +1,42 @@
-# React + Vite
+# 日報管理システム（Daily Report Management System)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Spring Boot(バックエンドAPI)とReact（フロントエンド）で構築された、業務利用を想定したフルスタックの日報管理Webアプリケーションです。
 
-Currently, two official plugins are available:
+ログインユーザーに応じた権限制御（RBAC）、Excelスタイルの見やすい一覧表、および月別・記録者別の高速な検索・フィルタリング機能を備えています。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 使用技術
+### バックエンド
+・言語／フレームワーク：Java  
+・セキュリティ：Spring Security（認証・ロール制御）  
+・ORマッピング：Spring Data JPA  
+・データベース：H2 Database
 
-## React Compiler
+### フロントエンド
+・ライブラリ：React,Vite  
+・通信：Axios
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 開発環境・その他
+・コンテナ化：Docker, Docker Compose  
+・バージョン管理：Git,GitHub
 
-## Expanding the ESLint configuration
+## 主な機能一覧
+### 1．認証・権限管理（RBAC）
+・ログイン／ログアウト：メールアドレスとパスワードによる認証。  
+・ロール別アクセス制御：  
+USER(一般) ⇒ 自身の日報登録・編集・閲覧。  
+ADMIN(管理者) ⇒ 全機能に加え、日報の削除権限を保持。
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2.日報データのCRUD操作
+・新規登録：作業日、作業時間、業務内容、所感を登録。  
+・編集：一覧から選択した日報データをフォームへ呼び出し、スムーズに更新。  
+・削除：管理者権限(ADMIN)ユーザーのみ削除可能。
+
+### 3.UI/UX・表示機能
+・Excelスタイルのtabularデザイン：カード型ではなく枠線を抑えた見やすいテーブルレイアウトを採用。  
+・ホバー・スクロール対応：レコード洗濯時のスムーズスクロールや視認性の高いUI。
+
+### 4．検索・フィルタリング
+・対象月検索：YYYY-MM形式での動的絞り込み。  
+・記録者検索：既存データから自動生成されたドロップダウンリストによる絞り込み。  
+・リセット機能：1クリックで検索条件をクリアし全件再表示。
+
