@@ -8,7 +8,6 @@ Spring Boot(バックエンドAPI)とReact（フロントエンド）で構築�
 フロントエンド：https://daily-report-frontend-ecru.vercel.app  
 バックエンド：https://daily-report-api-zurb.onrender.com
 
-ーーーーー
 
 ## 💡画面イメージ
 ### ログイン画面
@@ -16,7 +15,6 @@ Spring Boot(バックエンドAPI)とReact（フロントエンド）で構築�
 ### 日報一覧・検索画面
 ![日報一覧](images/report.png)
 
-ーーーーー
 
 ## 🍃開発背景
 実務の現場において、「日報作成の手間」「過去データの検索のしづらさ」「権限制御の曖昧さ」といった課題が多く見受けられます。  
@@ -41,7 +39,6 @@ Spring Boot(バックエンドAPI)とReact（フロントエンド）で構築�
 ・コンテナ化：Docker  
 ・バージョン管理；Git / GitHub
 
-ーーーーー
 
 ## ✨主な機能一覧
 ### 1．認証・権限管理（RBAC）
