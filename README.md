@@ -1,23 +1,35 @@
 # 日報管理システム（Daily Report Management System)
 
+### 業務をスムーズに共有。現場の声を集約するフルスタック日報管理アプリ
+
 Spring Boot(バックエンドAPI)とReact（フロントエンド）で構築された、業務利用を想定したフルスタックの日報管理Webアプリケーションです。
 
-ログインユーザーに応じた権限制御（RBAC）、Excelスタイルの見やすい一覧表、および月別・記録者別の高速な検索・フィルタリング機能を備えています。
+## 🌐デプロイURL
+フロントエンド：https://daily-report-frontend-ecru.vercel.app  
+バックエンド：https://daily-report-api-zurb.onrender.com
 
-## 使用技術
+## 画面イメージ
+
+## 開発環境
 ### バックエンド
-・言語／フレームワーク：Java  
+・言語／フレームワーク：Java21 / Spring Boot  
+・ビルドツール：Gradle  
 ・セキュリティ：Spring Security（認証・ロール制御）  
 ・ORマッピング：Spring Data JPA  
-・データベース：H2 Database
+・データベース：Neon PostgreSQL（本番） / MySQL（ローカル　Docker）
 
 ### フロントエンド
-・ライブラリ：React,Vite  
+・ライブラリ：React / Vite  
 ・通信：Axios
 
-### 開発環境・その他
-・コンテナ化：Docker, Docker Compose  
-・バージョン管理：Git,GitHub
+### インフラ・デプロイ
+・フロントエンドホスティング：Vercel  
+・バックエンドホスティング：Render  
+・データベース：Neon  
+・コンテナ化：Docker  
+・バージョン管理；Git / GitHub
+
+ーーーー
 
 ## 主な機能一覧
 ### 1．認証・権限管理（RBAC）
@@ -39,4 +51,48 @@ ADMIN(管理者) ⇒ 全機能に加え、日報の削除権限を保持。
 ・対象月検索：YYYY-MM形式での動的絞り込み。  
 ・記録者検索：既存データから自動生成されたドロップダウンリストによる絞り込み。  
 ・リセット機能：1クリックで検索条件をクリアし全件再表示。
+
+## ER図
+```mermaid
+erDiagram
+USERS || --o{ REPORTS : "作成する"
+
+USERS {
+digint id PK
+string email "ユニーク"
+string password "ハッシュ化"
+string name "ユーザー名"
+string role "USER / ADMIN"
+}
+
+REPORT {
+bigint id PK
+bigint user_id FK
+date work_date "作業日"
+decimal work_hours "作業時間"
+text content "業務内容"
+text impressions "所感"
+timestamp created_at "作成日時"
+}
+```
+
+
+flowchart TD
+Client[ユーザー / ブラウザ]
+
+subgraph Frontend [Vercel]
+ReactApp[React + Vite App]
+end
+
+subgraph Backend [Render]
+SpringBoot[Spring Boot API / Java 21]
+end
+
+subgraph Database [Neon]
+PostgreSQL[(PostgreSQL)]
+end
+
+Client -->|1. HTTPS リクエスト| ReactApp
+ReactApp -->|2. REST API 通信 / CORS | SpringBoot
+SpringBoot -->|3. JDBC / JPA 接続| PostgreSQL
 
