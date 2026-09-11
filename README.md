@@ -8,9 +8,17 @@ Spring Boot(バックエンドAPI)とReact（フロントエンド）で構築�
 フロントエンド：https://daily-report-frontend-ecru.vercel.app  
 バックエンド：https://daily-report-api-zurb.onrender.com
 
-## 画面イメージ
+ーーーーー
 
-## 開発環境
+## 💻画面イメージ
+### ログイン画面
+![ログイン画面](images/login.png)
+### 日報一覧・検索画面
+![日報一覧](images/report.png)
+
+ーーーーー
+
+## 🍃開発環境
 ### バックエンド
 ・言語／フレームワーク：Java21 / Spring Boot  
 ・ビルドツール：Gradle  
@@ -29,9 +37,9 @@ Spring Boot(バックエンドAPI)とReact（フロントエンド）で構築�
 ・コンテナ化：Docker  
 ・バージョン管理；Git / GitHub
 
-ーーーー
+ーーーーー
 
-## 主な機能一覧
+## ✨主な機能一覧
 ### 1．認証・権限管理（RBAC）
 ・ログイン／ログアウト：メールアドレスとパスワードによる認証。  
 ・ロール別アクセス制御：  
@@ -52,7 +60,7 @@ ADMIN(管理者) ⇒ 全機能に加え、日報の削除権限を保持。
 ・記録者検索：既存データから自動生成されたドロップダウンリストによる絞り込み。  
 ・リセット機能：1クリックで検索条件をクリアし全件再表示。
 
-## ER図
+## 📉ER図
 ```mermaid
 erDiagram
 USERS || --o{ REPORTS : "作成する"
