@@ -75,8 +75,7 @@ text impressions "所感"
 timestamp created_at "作成日時"
 }
 ```
-
-
+```mermaid
 flowchart TD
 Client[ユーザー / ブラウザ]
 
@@ -95,4 +94,4 @@ end
 Client -->|1. HTTPS リクエスト| ReactApp
 ReactApp -->|2. REST API 通信 / CORS | SpringBoot
 SpringBoot -->|3. JDBC / JPA 接続| PostgreSQL
-
+```
